@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RemoteSiteSetting xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Remote site setting for Nationalize.io API.  
+Used by Bold_ContactNationalizeQueueable to enrich newly created Contact records with the most probable country code in the custom field Country__c.</description>
+    <disableProtocolSecurity>false</disableProtocolSecurity>
+    <isActive>true</isActive>
+    <url>https://api.nationalize.io</url>
+</RemoteSiteSetting>
