@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Package xmlns="http://soap.sforce.com/2006/04/metadata">
+    <types>
+        <members>Bold_ContactNationalizeQueueable</members>
+        <members>Bold_ContactTriggerHandler</members>
+        <members>Bold_NationalizeResponse</members>
+        <members>Bold_TestDataFactory</members>
+        <members>Bold_NationalizeMock</members>
+        <members>Bold_ContactTriggerHandlerTest</members>
+        <members>TriggerHandler</members>
+        <members>TriggerHandler_Test</members>
+        <name>ApexClass</name>
+    </types>
+    <types>
+        <members>ContactTrigger</members>
+        <name>ApexTrigger</name>
+    </types>
+    <types>
+        <members>Contact.Country__c</members>
+        <name>CustomField</name>
+    </types>
+    <types>
+        <members>Bold_Nationalize_Settings__mdt</members>
+        <name>CustomObject</name>
+    </types>
+    <types>
+        <members>Bold_Nationalize_Settings__mdt.Default</members>
+        <name>CustomMetadata</name>
+    </types>
+    <types>
+        <members>Nationalize_API</members>
+        <name>RemoteSiteSetting</name>
+    </types>
+    <version>66.0</version>
+</Package>
