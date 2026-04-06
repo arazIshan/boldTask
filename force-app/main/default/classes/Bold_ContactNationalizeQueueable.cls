@@ -43,16 +43,12 @@ public without sharing class Bold_ContactNationalizeQueueable implements Queueab
 
             // Query and process the contacts
             List<Contact> toUpdate = new List<Contact>();
-            if (Test.isRunningTest()) {
-                System.debug('TEST LOG -- idsToProcess: ' + idsToProcess);
-            }
+
             for (Contact con : [SELECT Id, FirstName 
                                 FROM Contact 
                                 WHERE Id IN :idsToProcess]) {
+
                 try {
-                    if (Test.isRunningTest()) {
-                        System.debug('TEST LOG -- Queried Contact Id: ' + con.Id + ' FirstName: ' + con.FirstName);
-                    }
                     if (!String.isNotBlank(con.FirstName)) {
                         continue; // skip records without a first name
                     }
@@ -72,12 +68,7 @@ public without sharing class Bold_ContactNationalizeQueueable implements Queueab
                         Bold_NationalizeResponse response = (Bold_NationalizeResponse) JSON.deserialize(res.getBody(), Bold_NationalizeResponse.class);
                         String countryCode = response.getHighestProbabilityCountry();
 
-                        // No test-only fallback here; keep behavior consistent with API response
-
                         if (String.isNotBlank(countryCode)) {
-                            if (Test.isRunningTest()) {
-                                System.debug('TEST LOG -- Adding to toUpdate: ' + con.Id + ' => ' + countryCode);
-                            }
                             toUpdate.add(new Contact(Id = con.Id, Country__c = countryCode));
                         }
                     } else {
@@ -90,7 +81,7 @@ public without sharing class Bold_ContactNationalizeQueueable implements Queueab
 
             if (!toUpdate.isEmpty()) {
                 Database.SaveResult[] srList = Database.update(toUpdate, false);
-                // Log any failed updates to aid debugging in tests
+                // Log any failed updates
                 for (Integer i = 0; i < srList.size(); i++) {
                     if (!srList[i].isSuccess()) {
                         for (Database.Error err : srList[i].getErrors()) {
